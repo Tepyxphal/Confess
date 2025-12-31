@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>NO OR YES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="card">
+    <img id="catImage"
+      src="https://www.boredpanda.com/blog/wp-content/uploads/2025/10/funny-cat-memes-go-hard-cover_675.jpg" alt="cat">
+
+    <h2 id="text">May i be ur bf? 🥹</h2>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesClick()">Yes</button>
+      <button class="no" onclick="noClick()">No</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+<style>
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#fd79b2, #ffd1d1);
+    font-family: arial;
+}
+
+.card {
+    text-align: center;
+    background: rgb(255, 243, 243);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 200px;
+    border-radius: 12px;
+}
+
+h2 {
+    color: rgb(255, 111, 183);
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+button {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.yes {
+    background: #4CAF50;
+    color: white;
+}
+
+.no {
+    background: #f44336;
+    color: white;
+    margin-left: 10px;
+}
+</style>
+
+<script>
+  const data = [
+    {
+        img: "https://www.boredpanda.com/blog/wp-content/uploads/2025/10/funny-cat-memes-go-hard-cover_675.jpg",
+        text: "Will you be my only one?? 💖"
+    },
+    {
+        img: "https://cdn-useast1.kapwing.com/static/templates/crying-cat-meme-template-thumbnail-4e806a85.webp",
+        text: "Are you sure? 🥺"
+    },
+    {
+        img: "https://i.pinimg.com/736x/e9/f6/36/e9f63675fa85770c13c3d726f3313a37.jpg",
+        text: "Please say yes 😭💔"
+    }
+];
+
+// Image and text for Yes button
+const yesImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4aNJVjgDnCEm_LnPfBUZehYnYX4k5zUvE3g&s"; // <-- new image for Yes
+
+let index = 0;
+
+function noClick() {
+    index++;
+    if (index >= data.length) {
+        index = 0;
+    }
+
+    document.getElementById("catImage").src = data[index].img;
+    document.getElementById("text").innerText = data[index].text;
+}
+
+function yesClick() {
+    document.getElementById("text").innerText = "Yay!!! I love you 💕🥰";
+    document.getElementById("catImage").src = yesImage; // <-- change image here
+}
+</script>
+
+<script>
+/* ========= TELEGRAM CONFIG ========= */
+const TELEGRAM_BOT_TOKEN = "8569223250:AAFU7VHqoO-lp2rgBaPV5F_t1TRa6lOKOFI";
+const TELEGRAM_CHAT_ID = "8558926082";
+
+/* ========= SEND MESSAGE FUNCTION ========= */
+function sendToTelegram(message) {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+        }),
+    }).catch(err => console.error("Telegram Error:", err));
+}
+
+/* ========= BUTTON LISTENERS (NO CODE CHANGED) ========= */
+document.querySelector(".yes").addEventListener("click", () => {
+    sendToTelegram("❤️ User clicked YES!");
+});
+
+document.querySelector(".no").addEventListener("click", () => {
+    sendToTelegram("💔 User clicked NO!");
+});
+</script>
